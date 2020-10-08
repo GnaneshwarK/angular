@@ -1,0 +1,93 @@
+<div class="navbar navbar-expand-md navbar-dark bg-dark mb-4" role="navigation">
+  <a class="navbar-brand" href="#">RENTAL MANAGEMENT SYSTEM</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown"  >
+              <a class="nav-link dropdown-toggle" id="dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Locations</a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown2" > 
+                  <li class="dropdown-item dropdown" *ngFor="let loc of locations" >
+                      <a class="dropdown-toggle" id="dropdown2-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{loc.name}}</a>
+                      <ul class="dropdown-menu" aria-labelledby="dropdown2-1">
+                          <li class="dropdown-item"   (click)="showCategory(branch)" *ngFor="let branch of loc.branches" ><a  >{{branch.name}}</a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+  </div>
+</div>
+
+
+
+<section class="our-webcoderskull padding-lg"  >
+  <div class="container">
+    <div class="row heading heading-icon text-center">
+        <h3>WelCome to Rental Management System</h3>
+    </div>
+    <div class="row" >
+      <div><b>{{branchName}}</b></div>
+    </div>
+    <ul class="row"  *ngIf='categories '>
+     
+      <li class="col-12 col-md-6 col-lg-3"  *ngFor="let cat of categories">
+          <div class="cnt-block equal-hight" style="height: 249px;">
+            <figure>
+              <img src="{{'./../assets/category/'+cat.image}}" class="img-responsive" alt="{{cat.name}}">
+            </figure>
+            <h3><a (click)="showSubCat(cat)" type="button"  data-toggle="modal" >{{cat.name}}</a></h3>
+        
+          </div>
+      </li>
+    
+    </ul>
+
+  </div>
+
+
+  <div class="container our-webcoderskull padding-lg">
+  
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div><b>{{branchName+"/"+catName}}</b></div>
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+          
+         
+
+          <ul class="row" *ngIf='subcategories '>
+            <li class="col-12 col-md-6 col-lg-3"  *ngFor="let cat of subcategories">
+                <div class="cnt-block equal-hight" style="height: 249px;">
+                  <figure>
+                    <img src="{{'./../assets/category/subcategory/'+cat.image}}" class="img-responsive" alt="{{cat.name}}">
+                  </figure>
+                  <h6><a (click)="showSubCat(cat)" type="button"  >{{cat.name}}</a></h6>
+                </div>
+            </li>
+          </ul>
+          <div  >
+        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+</section>
+
+
+
